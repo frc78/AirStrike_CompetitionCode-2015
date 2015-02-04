@@ -28,11 +28,10 @@ public class Chassis extends Subsystem {
 	Encoder leftEnc = new Encoder(RobotMap.LEFT_ENC_A, RobotMap.LEFT_ENC_B);
 	
 	//VARIABLES
-	double straightCorrectionConst = 0.006;
-	double error;
+	
+		//DISTANCE CALCULATION
+	double distanceError;
 	double distanceP = 0.0003;
-	
-	
 	final double DISTANCE_ERROR_THRESHOLD = 175;
 	public int errorNeutralizedCount = 0;
 	double straightErrorConst = (0.006);
@@ -52,7 +51,7 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.4, right*.4);
+       	setSpeed(left*.6, right*.6);
        	}
     }
     public void setSpeed(double left, double right){
@@ -83,28 +82,23 @@ public class Chassis extends Subsystem {
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
     public void driveStraightDistance(double distance){
-    	error = distance - ((-getLeftEnc()-getRightEnc())/2);
-    	double speed = distanceP*(error);
-    	System.out.println("distance" + distance);
-    	System.out.println("error" + error);
+    	distanceError = distance - ((-getLeftEnc()-getRightEnc())/2);
+    	double speed = distanceP*(distanceError);
 
-    	if (speed < .30 && speed > 0){
-    		speed = .30;
+    	if (speed < .25 && speed > 0){
+    		speed = .25;
     	}
     	
 
-    	double driftError = getGyro();
-
-    	if(Math.abs(error) < DISTANCE_ERROR_THRESHOLD){
+    	if(Math.abs(distanceError) < DISTANCE_ERROR_THRESHOLD){
     		errorNeutralizedCount ++;
     	}
     	else{
     		errorNeutralizedCount = 0;
     	}
+    	
+    	double driftError = getGyro();
     	setSpeed(speed+((straightErrorConst)*driftError), speed-((straightErrorConst)*driftError));
-        
-    	
-    	
     }
     
 //_____________________________________________________________________________________________________________
