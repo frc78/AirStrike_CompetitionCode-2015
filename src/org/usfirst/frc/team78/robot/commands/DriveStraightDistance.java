@@ -13,8 +13,7 @@ public class DriveStraightDistance extends Command {
     public DriveStraightDistance(double feet) {
     	requires(Robot.chassis);
     	
-    	m_distance_clicks = -(int)(685*feet);
-    	
+    	m_distance_clicks = (int)(685*feet);
     	setTimeout(feet/2);
     }
 
@@ -35,10 +34,12 @@ public class DriveStraightDistance extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.chassis.stopAllDrive();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

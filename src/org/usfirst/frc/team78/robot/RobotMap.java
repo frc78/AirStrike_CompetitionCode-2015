@@ -22,6 +22,7 @@ public class RobotMap {
 	final static int ORANGE = 2;
 	final static int RED = 3;
 	final static int DOUBLE_GREEN = 4;
+	final static int DOUBLE_YELLOW = 5;
 	
 	//MOTORS
 	final static public int LEFT_DRIVE_1 = YELLOW;
@@ -29,6 +30,7 @@ public class RobotMap {
 	final static public int RIGHT_DRIVE_1 = RED;
 	final static public int RIGHT_DRIVE_2 = ORANGE;
 	final static public int H_DRIVE = DOUBLE_GREEN;
+	final static public int ELEVATOR = DOUBLE_YELLOW;
 	
 	//ANALOG SENSORS
 	final static public int GYRO = 0;
@@ -38,6 +40,11 @@ public class RobotMap {
 	final static public int LEFT_ENC_B = 1;
 	final static public int RIGHT_ENC_A = 2;
 	final static public int RIGHT_ENC_B = 3;
+	final static public int LIFT_ENC_A = 4;
+	final static public int LIFT_ENC_B = 5;
+	final static public int LIFT_UPPER_LIMIT = 6;
+	final static public int LIFT_LOWER_LIMIT = 7;
+	
 	
 	
 	

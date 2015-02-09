@@ -1,15 +1,15 @@
 
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.subsystems.Chassis;
+import org.usfirst.frc.team78.robot.subsystems.Elevator;
+import org.usfirst.frc.team78.robot.subsystems.Vision;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team78.robot.commands.ExampleCommand;
-import org.usfirst.frc.team78.robot.subsystems.Chassis;
-import org.usfirst.frc.team78.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,9 +20,11 @@ import org.usfirst.frc.team78.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final Chassis chassis = new Chassis();
+	public static Elevator elevator = new Elevator();
+	public static Vision vision = new Vision();
 	public static OI oi;
+	
 
     Command autonomousCommand;
 
@@ -30,10 +32,11 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public void robotInit() {
+    public void robotInit() {	
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+		
+        //****autonomousCommand = new ExampleCommand();****//TODO auto cmd here
     }
 	
 	public void disabledPeriodic() {
@@ -73,6 +76,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	SmartDashboard.putNumber("Gyro", Robot.chassis.getGyro()); //TODO Should be here?
+    	SmartDashboard.putNumber("Elevator Encoder", Robot.elevator.getLiftEnc());
         Scheduler.getInstance().run();
     }
     
