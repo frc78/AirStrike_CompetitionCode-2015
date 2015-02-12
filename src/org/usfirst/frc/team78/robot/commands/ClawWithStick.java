@@ -7,17 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftMoveToHeight extends Command {
+public class ClawWithStick extends Command {
 
-	int m_height;
-	int m_error;
-	
-    public LiftMoveToHeight(int height) {
-    	requires(Robot.elevator);
-    	
-    	m_height = height;
-    	m_error = height - Robot.elevator.getLiftEnc();
-    	setTimeout(m_error/200); //TODO tune
+    public ClawWithStick() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.claw);
     }
 
     // Called just before this Command runs the first time
@@ -26,17 +21,17 @@ public class LiftMoveToHeight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.moveToHeight(m_height);
+    	Robot.claw.clawWithJoySticks();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (isTimedOut() || Robot.elevator.isOutOfBounds());
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.stopLift();
+    	Robot.claw.stopClaw();
     }
 
     // Called when another command which requires one or more of the same

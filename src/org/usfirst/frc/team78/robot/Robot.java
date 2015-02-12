@@ -2,6 +2,7 @@
 package org.usfirst.frc.team78.robot;
 
 import org.usfirst.frc.team78.robot.subsystems.Chassis;
+import org.usfirst.frc.team78.robot.subsystems.Claw;
 import org.usfirst.frc.team78.robot.subsystems.Elevator;
 import org.usfirst.frc.team78.robot.subsystems.Vision;
 
@@ -22,7 +23,9 @@ public class Robot extends IterativeRobot {
 
 	public static final Chassis chassis = new Chassis();
 	public static Elevator elevator = new Elevator();
+	public static Claw claw = new Claw();
 	public static Vision vision = new Vision();
+	
 	public static OI oi;
 	
 
@@ -77,6 +80,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	SmartDashboard.putNumber("Gyro", Robot.chassis.getGyro()); //TODO Should be here?
     	SmartDashboard.putNumber("Elevator Encoder", Robot.elevator.getLiftEnc());
+    	//SmartDashboard.putNumber("Stick Val", Robot.oi.getManipulatorLeftStick());
         Scheduler.getInstance().run();
     }
     
