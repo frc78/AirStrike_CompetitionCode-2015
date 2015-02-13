@@ -1,7 +1,9 @@
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.LiftMoveToHeight;
+import org.usfirst.frc.team78.robot.commands.OpenClaw;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -16,16 +18,27 @@ public class OI {
 
 	public Joystick driverStick;
 	public Joystick manipulatorStick;
-	public Button btnLiftToZero;
-	
+	public Button btnOpenClaw;
+	public Button btnCloseClaw;
+	public Button btnMoveToMiddle;
 	
 	
 	public OI(){
 		driverStick = new Joystick(0);
-		
 		manipulatorStick = new Joystick(1);
-		btnLiftToZero = new JoystickButton(manipulatorStick,2);
-		btnLiftToZero.whenPressed(new LiftMoveToHeight(2000));
+		
+
+		
+		btnOpenClaw = new JoystickButton(manipulatorStick, 9);
+		btnOpenClaw.whenPressed(new OpenClaw());
+		
+		btnCloseClaw = new JoystickButton(manipulatorStick, 10);
+		btnCloseClaw.whenPressed(new CloseClaw());
+		
+		btnMoveToMiddle = new JoystickButton(manipulatorStick, 2);
+		btnMoveToMiddle.whenPressed(new LiftMoveToHeight(2000));
+		
+		
 		
 		SmartDashboard.putData(new DriveStraightDistance(8));
 	}

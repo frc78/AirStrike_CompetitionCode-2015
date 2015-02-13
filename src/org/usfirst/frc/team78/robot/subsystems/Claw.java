@@ -30,5 +30,8 @@ public class Claw extends Subsystem {
     public void stopClaw(){
     	claw.set(0);
     }
+    public void setSpeed(double speed){
+    	claw.set(speed);
+    }
 }
 

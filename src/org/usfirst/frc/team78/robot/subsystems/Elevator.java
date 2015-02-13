@@ -20,7 +20,7 @@ public class Elevator extends Subsystem {
 
 
 	//VARIABLES
-	double liftP = 0.0002;//TODO tune
+	double liftP = 0.001;//TODO tune
 	double liftError;
 	int LIFT_ERROR_THRESHOLD = 10;//TODO tune
 	int liftErrorNeutralizedCount;
@@ -58,7 +58,7 @@ public class Elevator extends Subsystem {
     	else{
     		liftErrorNeutralizedCount = 0;
     	}
-    	setLiftSpeed(speed*.2);//TODO tune speed
+    	setLiftSpeed(speed);//TODO tune speed
     	
 	}//end lift
     
