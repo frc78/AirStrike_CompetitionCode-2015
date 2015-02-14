@@ -28,6 +28,15 @@ public class Elevator extends Subsystem {
 	static final int LOWER_LIMIT = 250;
 	
 
+	final public int FLOOR_PICKUP = 2000;//TODO these are all made up values
+	final public int ABOVE_TOTE = 2001;
+	final public int SCORING_PLATFORM = 2002;
+	final public int STEP = 2003;
+	final public int CAN_3 = 2004;
+	final public int CAN_4 = 2005;
+	final public int CAN_5 = 2006;
+	
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
