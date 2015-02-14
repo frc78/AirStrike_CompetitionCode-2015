@@ -38,7 +38,7 @@ public class Chassis extends Subsystem {
 	final double DISTANCE_ERROR_THRESHOLD = 175;
 	public int errorNeutralizedCount = 0;
 	final double STRAIGHT_ERROR_CONST = (0.006);
-	final double STRAIGHT_STRAFE_ERROR_CONST = (.035);
+	final double STRAIGHT_STRAFE_ERROR_CONST = (.055);
 	
 
     public void initDefaultCommand() {

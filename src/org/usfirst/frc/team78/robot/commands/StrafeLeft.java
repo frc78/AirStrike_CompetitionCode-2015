@@ -19,7 +19,7 @@ public class StrafeLeft extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	m_heading = Robot.chassis.getGyro();
-    	Robot.chassis.setStrafeSpeed(.35);
+    	Robot.chassis.setStrafeSpeed(.42);
     	
     }
 

@@ -16,7 +16,7 @@ public class OpenClaw extends Command {
     }
 
     protected void initialize() {
-    	Robot.claw.setSpeed(1);
+    	Robot.claw.setSpeed(-1);
     	
     }
 

@@ -7,6 +7,7 @@ import org.usfirst.frc.team78.robot.commands.OpenClaw;
 import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team78.robot.commands.StopAllDrive;
 import org.usfirst.frc.team78.robot.commands.StrafeLeft;
+import org.usfirst.frc.team78.robot.commands.StrafeRight;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -40,6 +41,10 @@ public class OI {
 		btnStrafeLeft = new JoystickButton(driverStick, 5);
 		btnStrafeLeft.whenPressed(new StrafeLeft());
 		btnStrafeLeft.whenReleased(new StopAllDrive());
+		
+		btnStrafeRight = new JoystickButton(driverStick, 6);
+		btnStrafeRight.whenPressed(new StrafeRight());
+		btnStrafeRight.whenReleased(new StopAllDrive());
 		
 
 		//MANIPULATOR BUTTONS
