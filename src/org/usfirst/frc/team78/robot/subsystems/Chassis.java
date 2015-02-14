@@ -101,7 +101,7 @@ public class Chassis extends Subsystem {
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
     public void driveStraightDistance(double distance){
-    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);//TODO why negated??
+    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);
     	double speed = distanceP*(distanceError);
 
     	if (speed < .25 && speed > 0){
