@@ -1,33 +1,34 @@
-
 package org.usfirst.frc.team78.robot.commands;
 
 import org.usfirst.frc.team78.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class LiftWithSticks extends Command {
+public class OpenClaw extends Command {
 
-    public LiftWithSticks() {
-    	requires(Robot.elevator);
+    public OpenClaw() {
+
+    	requires(Robot.claw);
+    	setTimeout(0.22);
     }
 
     protected void initialize() {
+    	Robot.claw.setSpeed(1);
+    	
     }
 
     protected void execute() {
-    	Robot.elevator.liftWithSticks();
     }
 
     protected boolean isFinished() {
-        return false; 
+        return isTimedOut();
     }
 
     protected void end() {
-    	Robot.elevator.stopLift();
+    	Robot.claw.stopClaw();
     }
 
     protected void interrupted() {
