@@ -4,6 +4,7 @@ import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.LiftMoveToHeight;
 import org.usfirst.frc.team78.robot.commands.OpenClaw;
+import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -41,6 +42,7 @@ public class OI {
 		
 		
 		SmartDashboard.putData(new DriveStraightDistance(8));
+		SmartDashboard.putData(new ResetLiftEncoder());
 	}
 	
 	//DRIVER STICK
