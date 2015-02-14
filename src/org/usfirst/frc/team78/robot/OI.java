@@ -1,7 +1,12 @@
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.LiftMoveToHeight;
+import org.usfirst.frc.team78.robot.commands.OpenClaw;
+import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
+import org.usfirst.frc.team78.robot.commands.StopAllDrive;
+import org.usfirst.frc.team78.robot.commands.StrafeLeft;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -16,28 +21,51 @@ public class OI {
 
 	public Joystick driverStick;
 	public Joystick manipulatorStick;
-	public Button btnLiftToZero;
 	
+	//DRIVER BUTTONS
+	public Button btnStrafeLeft;
+	public Button btnStrafeRight;
+	
+	//MANIPULATOR BUTTONS
+	public Button btnOpenClaw;
+	public Button btnCloseClaw;
+	public Button btnMoveToMiddle;
 	
 	
 	public OI(){
 		driverStick = new Joystick(0);
-		
 		manipulatorStick = new Joystick(1);
-		btnLiftToZero = new JoystickButton(manipulatorStick,2);
-		btnLiftToZero.whenPressed(new LiftMoveToHeight(2000));
 		
+		//DRIVER BUTTONS
+		btnStrafeLeft = new JoystickButton(driverStick, 5);
+		btnStrafeLeft.whenPressed(new StrafeLeft());
+		btnStrafeLeft.whenReleased(new StopAllDrive());
+		
+
+		//MANIPULATOR BUTTONS
+		btnOpenClaw = new JoystickButton(manipulatorStick, 9);
+		btnOpenClaw.whenPressed(new OpenClaw());
+		
+		btnCloseClaw = new JoystickButton(manipulatorStick, 10);
+		btnCloseClaw.whenPressed(new CloseClaw());
+		
+		btnMoveToMiddle = new JoystickButton(manipulatorStick, 2);
+		btnMoveToMiddle.whenPressed(new LiftMoveToHeight(2000));
+		
+		
+		//DASHBOARD COMMANDS
 		SmartDashboard.putData(new DriveStraightDistance(8));
+		SmartDashboard.putData(new ResetLiftEncoder());
 	}
 	
 	//DRIVER STICK
 	public double getDriverLeftStick() {
 		return driverStick.getY();
-	}//end get driver left stick
+	}
 	
 	public double getDriverRightStick(){
 		return driverStick.getThrottle();
-	}//end get driver right stick
+	}
 	
 	
 	
@@ -46,12 +74,10 @@ public class OI {
 	
 	public double getManipulatorLeftStickY(){
 		return -manipulatorStick.getY();
-	}//end get manipulator left stick
+	}
 	public double getManipulatorRightStickX(){
 		return manipulatorStick.getTwist();
 	}
 
-	
-
-}
+}//end class
 

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  *
@@ -23,6 +23,7 @@ public class Chassis extends Subsystem {
 	Victor hDrive = new Victor(RobotMap.H_DRIVE);
 	
 	//SENSORS
+	
 	Gyro gyro = new Gyro(RobotMap.GYRO);
 	Encoder rightEnc = new Encoder(RobotMap.RIGHT_ENC_A, RobotMap.RIGHT_ENC_B);
 	Encoder leftEnc = new Encoder(RobotMap.LEFT_ENC_A, RobotMap.LEFT_ENC_B);
@@ -36,7 +37,8 @@ public class Chassis extends Subsystem {
 	final double distanceP = 0.0003;
 	final double DISTANCE_ERROR_THRESHOLD = 175;
 	public int errorNeutralizedCount = 0;
-	double straightErrorConst = (0.006);
+	final double STRAIGHT_ERROR_CONST = (0.006);
+	final double STRAIGHT_STRAFE_ERROR_CONST = (.035);
 	
 
     public void initDefaultCommand() {
@@ -53,20 +55,13 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.7, right*.7);
+       	setSpeed(left*.5, right*.5);
        	}
-       	
-       if(Robot.oi.driverStick.getRawButton(5)){
-       		setStrafeSpeed(.321);
-       }
-      	else if(Robot.oi.driverStick.getRawButton(6)){
-      		setStrafeSpeed(-0.321);
-      	}
-       	else{
-       		setStrafeSpeed(0);
-       	}
+
        	
     }//end drive with joysticks
+    
+
     
     public void setSpeed(double left, double right){
     	/*if(left > 0 && right > 0){
@@ -92,16 +87,22 @@ public class Chassis extends Subsystem {
     public void setStrafeSpeed(double speed){
     	hDrive.set(speed);
     }
+   
+
+    public void straightStrafeCorrection(double heading){
+    	double driftError = heading - getGyro();
+    	setSpeed(-((STRAIGHT_ERROR_CONST)*driftError), ((STRAIGHT_ERROR_CONST)*driftError));
+    }
     
     public void stopAllDrive(){
     	setSpeed(0,0);
     	setStrafeSpeed(0);
-    }//end stop drive
+    }
  
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
     public void driveStraightDistance(double distance){
-    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);
+    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);//TODO why negated??
     	double speed = distanceP*(distanceError);
 
     	if (speed < .25 && speed > 0){
@@ -116,7 +117,7 @@ public class Chassis extends Subsystem {
     	}
     	
     	double driftError = getGyro();
-    	setSpeed(speed+((straightErrorConst)*driftError), speed-((straightErrorConst)*driftError));
+    	setSpeed(speed+((STRAIGHT_STRAFE_ERROR_CONST)*driftError), speed-((STRAIGHT_STRAFE_ERROR_CONST)*driftError));
     }//end drive straight distance
     
 //_____________________________________________________________________________________________________________
@@ -145,7 +146,6 @@ public class Chassis extends Subsystem {
     public double getAccelZ(){
     	return accelerometer.getZ();
     }
-    
     
     public void resetSensorData(){
     	gyro.reset();

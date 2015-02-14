@@ -1,8 +1,6 @@
 package org.usfirst.frc.team78.robot.subsystems;
 
-import org.usfirst.frc.team78.robot.Robot;
 import org.usfirst.frc.team78.robot.RobotMap;
-import org.usfirst.frc.team78.robot.commands.ClawWithStick;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,17 +16,17 @@ public class Claw extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        setDefaultCommand(new ClawWithStick());
+    	//TODO default command
     }
     
     
     
-    public void clawWithJoySticks(){
-    	claw.set(Robot.oi.getManipulatorRightStickX());
-    }
     
     public void stopClaw(){
     	claw.set(0);
+    }
+    public void setSpeed(double speed){
+    	claw.set(speed);
     }
 }
 

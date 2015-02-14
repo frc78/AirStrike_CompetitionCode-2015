@@ -4,7 +4,6 @@ import org.usfirst.frc.team78.robot.Robot;
 import org.usfirst.frc.team78.robot.RobotMap;
 import org.usfirst.frc.team78.robot.commands.LiftWithSticks;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +19,10 @@ public class Elevator extends Subsystem {
 
 
 	//VARIABLES
-	double liftP = 0.0002;//TODO tune
+	double liftP = 0.001;//TODO tune
 	double liftError;
 	int LIFT_ERROR_THRESHOLD = 10;//TODO tune
-	int liftErrorNeutralizedCount;
+	public int liftErrorNeutralizedCount;
 	
 	static final int UPPER_LIMIT = 4800;
 	static final int LOWER_LIMIT = 250;
@@ -45,11 +44,11 @@ public class Elevator extends Subsystem {
     	
     	double speed = liftP*(liftError);
 
-    	if (speed < .15 && speed > 0){
-    		speed = .15;
+    	if (speed < .1 && speed > 0){
+    		speed = .1;
     	}
-    	else if(speed > -.15 && speed < 0){
-    		speed = -.15;
+    	else if(speed > -.1 && speed < 0){
+    		speed = -.1;
     	}
     	
     	if(Math.abs(liftError) < LIFT_ERROR_THRESHOLD){
@@ -58,7 +57,7 @@ public class Elevator extends Subsystem {
     	else{
     		liftErrorNeutralizedCount = 0;
     	}
-    	setLiftSpeed(speed*.2);//TODO tune speed
+    	setLiftSpeed(speed);//TODO tune speed
     	
 	}//end lift
     
@@ -99,6 +98,12 @@ public class Elevator extends Subsystem {
     
     public boolean isOutOfBounds(){
     	return getLiftEnc() > UPPER_LIMIT || getLiftEnc() < LOWER_LIMIT;
+    }
+    public void resetElevatorNeutralizedCount(){
+    	liftErrorNeutralizedCount = 0;
+    }
+    public void resetLiftEncoder(){
+    	liftEnc.reset();
     }
 
     
