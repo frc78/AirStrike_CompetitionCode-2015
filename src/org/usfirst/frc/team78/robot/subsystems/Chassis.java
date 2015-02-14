@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -23,6 +22,7 @@ public class Chassis extends Subsystem {
 	Victor hDrive = new Victor(RobotMap.H_DRIVE);
 	
 	//SENSORS
+	
 	Gyro gyro = new Gyro(RobotMap.GYRO);
 	Encoder rightEnc = new Encoder(RobotMap.RIGHT_ENC_A, RobotMap.RIGHT_ENC_B);
 	Encoder leftEnc = new Encoder(RobotMap.LEFT_ENC_A, RobotMap.LEFT_ENC_B);
@@ -57,10 +57,10 @@ public class Chassis extends Subsystem {
        	}
        	
        if(Robot.oi.driverStick.getRawButton(5)){
-       		setStrafeSpeed(.321);
+       		setStrafeSpeed(.35);
        }
       	else if(Robot.oi.driverStick.getRawButton(6)){
-      		setStrafeSpeed(-0.321);
+      		setStrafeSpeed(-0.35);
       	}
        	else{
        		setStrafeSpeed(0);
