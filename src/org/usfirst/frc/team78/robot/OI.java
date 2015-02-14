@@ -19,6 +19,7 @@ public class OI {
 
 	public Joystick driverStick;
 	public Joystick manipulatorStick;
+	
 	public Button btnOpenClaw;
 	public Button btnCloseClaw;
 	public Button btnMoveToMiddle;
@@ -40,7 +41,6 @@ public class OI {
 		btnMoveToMiddle.whenPressed(new LiftMoveToHeight(2000));
 		
 		
-		
 		SmartDashboard.putData(new DriveStraightDistance(8));
 		SmartDashboard.putData(new ResetLiftEncoder());
 	}
@@ -48,11 +48,11 @@ public class OI {
 	//DRIVER STICK
 	public double getDriverLeftStick() {
 		return driverStick.getY();
-	}//end get driver left stick
+	}
 	
 	public double getDriverRightStick(){
 		return driverStick.getThrottle();
-	}//end get driver right stick
+	}
 	
 	
 	
@@ -61,12 +61,10 @@ public class OI {
 	
 	public double getManipulatorLeftStickY(){
 		return -manipulatorStick.getY();
-	}//end get manipulator left stick
+	}
 	public double getManipulatorRightStickX(){
 		return manipulatorStick.getTwist();
 	}
 
-	
-
-}
+}//end class
 

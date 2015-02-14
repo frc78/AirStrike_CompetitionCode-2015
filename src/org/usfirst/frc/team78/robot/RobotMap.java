@@ -18,7 +18,7 @@ public class RobotMap {
 	final static int DOUBLE_YELLOW = 5;
 	final static int GREY = 6;
 	
-	//MOTORS
+	//MOTORS(PWM)
 	final static public int LEFT_DRIVE_1 = YELLOW;
 	final static public int LEFT_DRIVE_2 = BLUE;
 	final static public int RIGHT_DRIVE_1 = RED;
@@ -27,10 +27,10 @@ public class RobotMap {
 	final static public int ELEVATOR = DOUBLE_YELLOW;
 	final static public int CLAW = GREY;
 	
-	//ANALOG SENSORS
+	//ANALOG IN
 	final static public int GYRO = 0;
 	
-	//DIGITAL SENSORS
+	//DIGITAL IO
 	final static public int LEFT_ENC_A = 0;
 	final static public int LEFT_ENC_B = 1;
 	final static public int RIGHT_ENC_A = 2;

@@ -96,7 +96,7 @@ public class Chassis extends Subsystem {
     public void stopAllDrive(){
     	setSpeed(0,0);
     	setStrafeSpeed(0);
-    }//end stop drive
+    }
  
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
@@ -145,7 +145,6 @@ public class Chassis extends Subsystem {
     public double getAccelZ(){
     	return accelerometer.getZ();
     }
-    
     
     public void resetSensorData(){
     	gyro.reset();
