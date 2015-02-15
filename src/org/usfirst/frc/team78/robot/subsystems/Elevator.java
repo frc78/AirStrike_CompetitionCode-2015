@@ -25,7 +25,7 @@ public class Elevator extends Subsystem {
 	public int liftErrorNeutralizedCount;
 	
 	static final int UPPER_LIMIT = 4800;
-	static final int LOWER_LIMIT = 250;
+	static final int LOWER_LIMIT = 50;
 	
 
 	final public int FLOOR_PICKUP = 2000;//TODO these are all made up values
@@ -51,7 +51,7 @@ public class Elevator extends Subsystem {
     	
     	liftError = height-getLiftEnc();
     	
-    	double speed = liftP*(liftError);
+    	double speed = liftP * liftError;
 
     	if (speed < .1 && speed > 0){
     		speed = .1;
@@ -60,15 +60,15 @@ public class Elevator extends Subsystem {
     		speed = -.1;
     	}
     	
-    	if(Math.abs(liftError) < LIFT_ERROR_THRESHOLD){
-    		liftErrorNeutralizedCount ++;
-    	}
+    	if (Math.abs(liftError) < LIFT_ERROR_THRESHOLD){
+    		liftErrorNeutralizedCount ++; //command will end once within threshold for some time
+    	}	
     	else{
     		liftErrorNeutralizedCount = 0;
     	}
-    	setLiftSpeed(speed);//TODO tune speed
+    	setLiftSpeed(speed);
     	
-	}//end lift
+	}//end moveToHeight
     
     
     public void setLiftSpeed(double speed){	

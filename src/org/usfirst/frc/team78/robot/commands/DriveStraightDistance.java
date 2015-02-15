@@ -26,7 +26,7 @@ public class DriveStraightDistance extends Command {
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        return isTimedOut();//TODO better way?
     }
 
     protected void end() {

@@ -38,6 +38,9 @@ public class RobotMap {
 	final static public int LIFT_ENC_A = 4;
 	final static public int LIFT_ENC_B = 5;
 	
+	//RELAYS
+	public final static int INDICATOR_LIGHT = 0;
+	
 	
 	
 	

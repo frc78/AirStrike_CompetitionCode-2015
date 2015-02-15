@@ -35,7 +35,7 @@ public class Chassis extends Subsystem {
 		//DISTANCE CALCULATION
 	double distanceError;
 	final double distanceP = 0.0003;
-	final double DISTANCE_ERROR_THRESHOLD = 175;
+	final double DISTANCE_ERROR_THRESHOLD = 175; //in clicks
 	public int errorNeutralizedCount = 0;
 	final double STRAIGHT_ERROR_CONST = (0.006);
 	final double STRAIGHT_STRAFE_ERROR_CONST = (.055);
@@ -91,7 +91,7 @@ public class Chassis extends Subsystem {
 
     public void straightStrafeCorrection(double heading){
     	double driftError = heading - getGyro();
-    	setSpeed(-((STRAIGHT_ERROR_CONST)*driftError), ((STRAIGHT_ERROR_CONST)*driftError));
+    	setSpeed(-((STRAIGHT_STRAFE_ERROR_CONST)*driftError), ((STRAIGHT_STRAFE_ERROR_CONST)*driftError));
     }
     
     public void stopAllDrive(){
@@ -102,7 +102,7 @@ public class Chassis extends Subsystem {
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
     public void driveStraightDistance(double distance){
-    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);//TODO why negated??
+    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);//TODO why negated?
     	double speed = distanceP*(distanceError);
 
     	if (speed < .25 && speed > 0){
@@ -117,7 +117,7 @@ public class Chassis extends Subsystem {
     	}
     	
     	double driftError = getGyro();
-    	setSpeed(speed+((STRAIGHT_STRAFE_ERROR_CONST)*driftError), speed-((STRAIGHT_STRAFE_ERROR_CONST)*driftError));
+    	setSpeed(speed+((STRAIGHT_ERROR_CONST)*driftError), speed-((STRAIGHT_ERROR_CONST)*driftError));
     }//end drive straight distance
     
 //_____________________________________________________________________________________________________________
