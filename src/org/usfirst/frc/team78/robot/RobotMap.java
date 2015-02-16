@@ -10,19 +10,17 @@ public class RobotMap {
 
 	
 	//MOTOR COLORS
-	final static int YELLOW = 0;
+	final static int DOUBLE_YELLOW = 0;
 	final static int BLUE = 1;
 	final static int ORANGE = 2;
-	final static int RED = 3;
+	//final static int RED = 3;
 	final static int DOUBLE_GREEN = 4;
-	final static int DOUBLE_YELLOW = 5;
-	final static int GREY = 6;
+//	final static int DOUBLE_YELLOW = 5;
+	final static int GREY = 3;
 	
 	//MOTORS(PWM)
-	final static public int LEFT_DRIVE_1 = YELLOW;
-	final static public int LEFT_DRIVE_2 = BLUE;
-	final static public int RIGHT_DRIVE_1 = RED;
-	final static public int RIGHT_DRIVE_2 = ORANGE;
+	final static public int LEFT_DRIVE_1 = BLUE;
+	final static public int RIGHT_DRIVE_1 = ORANGE;
 	final static public int H_DRIVE = DOUBLE_GREEN;
 	final static public int ELEVATOR = DOUBLE_YELLOW;
 	final static public int CLAW = GREY;

@@ -17,9 +17,7 @@ public class Chassis extends Subsystem {
     
 	//MOTORS
 	Victor leftDrive1 = new Victor(RobotMap.LEFT_DRIVE_1);
-	Victor leftDrive2 = new Victor(RobotMap.LEFT_DRIVE_2);
 	Victor rightDrive1 = new Victor(RobotMap.RIGHT_DRIVE_1);
-	Victor rightDrive2 = new Victor(RobotMap.RIGHT_DRIVE_2);
 	Victor hDrive = new Victor(RobotMap.H_DRIVE);
 	
 	//SENSORS
@@ -78,9 +76,7 @@ public class Chassis extends Subsystem {
     	}
     	else{*/
     		leftDrive1.set(-left);
-    		leftDrive2.set(-left);
     		rightDrive1.set(right);
-    		rightDrive2.set(right);
     	//}
     }//end set speed
     

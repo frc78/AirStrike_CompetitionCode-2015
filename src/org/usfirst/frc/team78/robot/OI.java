@@ -76,7 +76,7 @@ public class OI {
 		btnScoringPlatform.whenPressed(new LiftMoveToHeight(Robot.elevator.SCORING_PLATFORM));
 		
 		btnStep = new JoystickButton(manipulatorStick, 4);
-		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.STEP));
+		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.STEP0));
 		
 		btnCan3 = new JoystickButton(manipulatorStick, 5);
 		btnCan3.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_3));

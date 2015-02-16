@@ -1,3 +1,5 @@
+
+
 package org.usfirst.frc.team78.robot.subsystems;
 
 import org.usfirst.frc.team78.robot.Robot;
@@ -28,10 +30,11 @@ public class Elevator extends Subsystem {
 	static final int LOWER_LIMIT = 50;
 	
 
-	final public int FLOOR_PICKUP = 2000;//TODO these are all made up values
-	final public int ABOVE_TOTE = 2001;
-	final public int SCORING_PLATFORM = 2002;
-	final public int STEP = 2003;
+	final public int FLOOR_PICKUP = 0;//TODO these are all made up values
+	final public int ABOVE_TOTE = 1425;
+	final public int SCORING_PLATFORM = 405;
+	final public int STEP0 = 600;
+	final public int STEP1 = 1775;
 	final public int CAN_3 = 2004;
 	final public int CAN_4 = 2005;
 	final public int CAN_5 = 2006;
