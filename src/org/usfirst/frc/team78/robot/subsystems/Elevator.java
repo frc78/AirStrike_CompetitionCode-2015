@@ -24,13 +24,13 @@ public class Elevator extends Subsystem {
 
 
 	//VARIABLES
-	double liftP = 0.001;//TODO tune
+	double liftP = 0.0012;//TODO tune
 	double liftError;
 	int LIFT_ERROR_THRESHOLD = 10;//TODO tune
 	public int liftErrorNeutralizedCount;
 	
 	static final int UPPER_LIMIT = 4800;
-	static final int LOWER_LIMIT = -1;
+	//static final int LOWER_LIMIT = -1;
 	
 
 	final public int FLOOR_PICKUP = 50;//TODO these are all made up values
@@ -72,12 +72,23 @@ public class Elevator extends Subsystem {
     	else{
     		liftErrorNeutralizedCount = 0;
     	}
+    	
+    	if((getLiftEnc() > UPPER_LIMIT) && speed > 0){
+    		speed = 0;
+    	}
+    	
     	setLiftSpeed(speed);
     	
 	}//end moveToHeight
     
     
     public void setLiftSpeed(double speed){	
+    	if(getZeroLimit() && speed < 0){
+    		resetLiftEncoder();
+    		speed = 0;
+    		
+    	}
+    	
     	liftMotor.set(speed);
     	
     }//end setLiftSpeed
@@ -89,21 +100,22 @@ public class Elevator extends Subsystem {
     
     public void liftWithSticks(){
     	double stick = Robot.oi.getManipulatorLeftStickY();
+    	double speed;
     	
-    	if(!Robot.oi.manipulatorStick.getRawButton(7)){ //normal soft limits
+    	if(!Robot.oi.manipulatorStick.getRawButton(7)){//normal soft limits
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0)
-	    		setLiftSpeed(0);
-	    	else if((getLiftEnc() < LOWER_LIMIT) && stick < 0)
-	    		setLiftSpeed(0);
+	    		speed = 0;
 	    	else
-	    	setLiftSpeed(.6*stick);
+	    	speed = stick*0.6;
+	    	
+	    	
     	}
     	else{//soft limit override mode
-	    	setLiftSpeed(.6*stick);
+	    	speed = stick*0.6;
     	}
-    	if(zeroLimit.get()){
-    		resetLiftEncoder();
-    	}
+
+    	setLiftSpeed(speed);
+    	
     } // end liftWithSticks()
     
     
@@ -115,13 +127,16 @@ public class Elevator extends Subsystem {
     }
     
     public boolean isOutOfBounds(){
-    	return getLiftEnc() > UPPER_LIMIT || getLiftEnc() < LOWER_LIMIT;
+    	return getLiftEnc() > UPPER_LIMIT || getZeroLimit();
     }
     public void resetElevatorNeutralizedCount(){
     	liftErrorNeutralizedCount = 0;
     }
     public void resetLiftEncoder(){
     	liftEnc.reset();
+    }
+    public boolean  getZeroLimit(){
+    	return !zeroLimit.get();
     }
 
     

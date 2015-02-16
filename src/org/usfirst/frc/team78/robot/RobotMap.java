@@ -26,6 +26,7 @@ public class RobotMap {
 	
 	//ANALOG IN
 	final static public int GYRO = 0;
+	final static public int CLAW_POT = 1;
 	
 	//DIGITAL IO
 	final static public int LEFT_ENC_A = 0;
