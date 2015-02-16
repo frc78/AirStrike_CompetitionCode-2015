@@ -6,6 +6,7 @@ import org.usfirst.frc.team78.robot.Robot;
 import org.usfirst.frc.team78.robot.RobotMap;
 import org.usfirst.frc.team78.robot.commands.LiftWithSticks;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +19,8 @@ public class Elevator extends Subsystem {
 	
 	//SENSORS
 	Encoder liftEnc = new Encoder(RobotMap.LIFT_ENC_A, RobotMap.LIFT_ENC_B);
+	DigitalInput zeroLimit = new DigitalInput(RobotMap.ZERO_LIMIT);
+
 
 
 	//VARIABLES
@@ -27,10 +30,10 @@ public class Elevator extends Subsystem {
 	public int liftErrorNeutralizedCount;
 	
 	static final int UPPER_LIMIT = 4800;
-	static final int LOWER_LIMIT = 50;
+	static final int LOWER_LIMIT = -1;
 	
 
-	final public int FLOOR_PICKUP = 0;//TODO these are all made up values
+	final public int FLOOR_PICKUP = 50;//TODO these are all made up values
 	final public int ABOVE_TOTE = 1425;
 	final public int SCORING_PLATFORM = 405;
 	final public int STEP0 = 600;
@@ -97,6 +100,9 @@ public class Elevator extends Subsystem {
     	}
     	else{//soft limit override mode
 	    	setLiftSpeed(.6*stick);
+    	}
+    	if(zeroLimit.get()){
+    		resetLiftEncoder();
     	}
     } // end liftWithSticks()
     

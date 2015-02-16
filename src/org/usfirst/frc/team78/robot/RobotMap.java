@@ -13,10 +13,9 @@ public class RobotMap {
 	final static int DOUBLE_YELLOW = 0;
 	final static int BLUE = 1;
 	final static int ORANGE = 2;
-	//final static int RED = 3;
-	final static int DOUBLE_GREEN = 4;
-//	final static int DOUBLE_YELLOW = 5;
 	final static int GREY = 3;
+	final static int DOUBLE_GREEN = 4;
+
 	
 	//MOTORS(PWM)
 	final static public int LEFT_DRIVE_1 = BLUE;
@@ -35,6 +34,7 @@ public class RobotMap {
 	final static public int RIGHT_ENC_B = 3;
 	final static public int LIFT_ENC_A = 4;
 	final static public int LIFT_ENC_B = 5;
+	final static public int ZERO_LIMIT = 6;
 	
 	//RELAYS
 	public final static int INDICATOR_LIGHT = 0;
