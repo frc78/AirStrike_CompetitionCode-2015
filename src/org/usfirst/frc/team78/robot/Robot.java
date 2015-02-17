@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team78.robot.subsystems.Chassis;
 import org.usfirst.frc.team78.robot.subsystems.Claw;
 import org.usfirst.frc.team78.robot.subsystems.Elevator;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -28,9 +30,10 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 	
+	SendableChooser autoChooser;
 
     Command autonomousCommand;
-
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -38,8 +41,15 @@ public class Robot extends IterativeRobot {
     public void robotInit() {	
 		oi = new OI();
         // instantiate the command used for the autonomous period
+		//autonomousCommand = new AutonomousCommand(); //robot builder made this last year, wpi doesn't recognize it now
+		autoChooser = new SendableChooser();
 		
-        //****autonomousCommand = new ExampleCommand();****//TODO auto cmd here
+		//AUTO MODES
+		autoChooser.addDefault("Do Nothing", new AutoDoNothing());
+		
+		SmartDashboard.putData("Auto Mode:", autoChooser);
+		
+        //****autonomousCommand = new ExampleCommand();****//TODO auto cmd here. We declare it in autoinit right now, might now be right
     }
 	
 	public void disabledPeriodic() {
@@ -48,6 +58,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	 autonomousCommand = (Command) autoChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -85,6 +96,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Right Stick", Robot.oi.getDriverRightStick());
     	SmartDashboard.putNumber("Left Stick", Robot.oi.getDriverLeftStick());
     	SmartDashboard.putNumber("Pot", Robot.claw.getPot());
+    	SmartDashboard.putBoolean("Is Lift Zeroed", Robot.elevator.isLiftZeroed);
         Scheduler.getInstance().run();
     }
     

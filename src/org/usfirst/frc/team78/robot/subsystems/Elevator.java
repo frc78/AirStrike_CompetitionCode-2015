@@ -32,7 +32,7 @@ public class Elevator extends Subsystem {
 	static final int UPPER_LIMIT = 4825;
 	//static final int LOWER_LIMIT = -1;
 	
-
+	public boolean isLiftZeroed = false;
 	
 	final public int FLOOR_PICKUP = 50;//TODO these are all made up values
 	final public int ABOVE_TOTE = 1425;
@@ -86,6 +86,7 @@ public class Elevator extends Subsystem {
     public void setLiftSpeed(double speed){	
     	if(getZeroLimit() && speed < 0){
     		resetLiftEncoder();
+    		isLiftZeroed = true;
     		speed = 0;
     		
     	}
