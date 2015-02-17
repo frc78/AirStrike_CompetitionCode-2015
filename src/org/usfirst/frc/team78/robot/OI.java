@@ -80,11 +80,11 @@ public class OI {
 		btnAboveTote.whenReleased(new LiftWithSticks());
 		
 		btnScoringPlatform = new JoystickButton(manipulatorStick, 3);
-		btnScoringPlatform.whenPressed(new LiftMoveToHeight(Robot.elevator.SCORING_PLATFORM));
+		btnScoringPlatform.whenPressed(new LiftMoveToHeight(Robot.elevator.SLED_PICKUP));
 		btnScoringPlatform.whenReleased(new LiftWithSticks());
 		
 		btnStep = new JoystickButton(manipulatorStick, 4);
-		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.STEP1));
+		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.ABOVE_SLED));
 		btnStep.whenReleased(new LiftWithSticks());
 		
 		btnCan3 = new JoystickButton(manipulatorStick, 5);

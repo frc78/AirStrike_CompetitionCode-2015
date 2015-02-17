@@ -61,14 +61,14 @@ public class Chassis extends Subsystem {
        	
        	if(Robot.oi.driverStick.getRawButton(5) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){//left strafe
        		setStrafeSpeed(-.42);
-       		straightStrafeCorrection(targetHeading);
+       		//straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(5)){
        		setStrafeSpeed(-.42);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){
        		setStrafeSpeed(.42);
-       		straightStrafeCorrection(targetHeading);
+       		//straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6)){
        		setStrafeSpeed(.42);
