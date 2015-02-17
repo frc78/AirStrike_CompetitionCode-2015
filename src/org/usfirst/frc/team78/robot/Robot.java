@@ -81,6 +81,10 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Gyro", Robot.chassis.getGyro()); //TODO Should be here?
     	SmartDashboard.putNumber("Elevator Encoder", Robot.elevator.getLiftEnc());
     	//SmartDashboard.putNumber("Stick Val", Robot.oi.getManipulatorLeftStick());
+    	SmartDashboard.putBoolean("Lower Limit", Robot.elevator.getZeroLimit());
+    	SmartDashboard.putNumber("Right Stick", Robot.oi.getDriverRightStick());
+    	SmartDashboard.putNumber("Left Stick", Robot.oi.getDriverLeftStick());
+    	SmartDashboard.putNumber("Pot", Robot.claw.getPot());
         Scheduler.getInstance().run();
     }
     

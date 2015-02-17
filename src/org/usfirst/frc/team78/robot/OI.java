@@ -4,6 +4,7 @@ import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.IndicateLinedUp;
 import org.usfirst.frc.team78.robot.commands.LiftMoveToHeight;
+import org.usfirst.frc.team78.robot.commands.LiftWithSticks;
 import org.usfirst.frc.team78.robot.commands.OpenClaw;
 import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team78.robot.commands.StopAllDrive;
@@ -23,6 +24,8 @@ public class OI {
 
 	public Joystick driverStick;
 	public Joystick manipulatorStick;
+	
+	final static double STICK_DEADZONE = 0.05;
 	
 	//DRIVER BUTTONS
 	public Button btnStrafeLeft;
@@ -49,11 +52,11 @@ public class OI {
 	//DRIVER BUTTONS
 		btnStrafeLeft = new JoystickButton(driverStick, 5);
 		btnStrafeLeft.whenPressed(new StrafeLeft());
-		btnStrafeLeft.whenReleased(new StopAllDrive());
+		//btnStrafeLeft.whenReleased(new StopAllDrive());
 		
 		btnStrafeRight = new JoystickButton(driverStick, 6);
 		btnStrafeRight.whenPressed(new StrafeRight());
-		btnStrafeRight.whenReleased(new StopAllDrive());
+		//btnStrafeRight.whenReleased(new StopAllDrive());
 		
 		btnIndicateLinedUp = new JoystickButton(driverStick, 1);
 		btnIndicateLinedUp.whileHeld(new IndicateLinedUp());
@@ -62,30 +65,39 @@ public class OI {
 	//MANIPULATOR BUTTONS
 		btnOpenClaw = new JoystickButton(manipulatorStick, 9);
 		btnOpenClaw.whenPressed(new OpenClaw());
+		btnOpenClaw.whenReleased(new LiftWithSticks());
 		
 		btnCloseClaw = new JoystickButton(manipulatorStick, 10);
 		btnCloseClaw.whenPressed(new CloseClaw());
+		btnCloseClaw.whenReleased(new LiftWithSticks());
 		
 		btnFloorPickup = new JoystickButton(manipulatorStick, 2);
 		btnFloorPickup.whenPressed(new LiftMoveToHeight(Robot.elevator.FLOOR_PICKUP));
+		btnFloorPickup.whenReleased(new LiftWithSticks());
 		
 		btnAboveTote = new JoystickButton(manipulatorStick, 1);
 		btnAboveTote.whenPressed(new LiftMoveToHeight(Robot.elevator.ABOVE_TOTE));
+		btnAboveTote.whenReleased(new LiftWithSticks());
 		
 		btnScoringPlatform = new JoystickButton(manipulatorStick, 3);
 		btnScoringPlatform.whenPressed(new LiftMoveToHeight(Robot.elevator.SCORING_PLATFORM));
+		btnScoringPlatform.whenReleased(new LiftWithSticks());
 		
 		btnStep = new JoystickButton(manipulatorStick, 4);
-		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.STEP0));
+		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.STEP1));
+		btnStep.whenReleased(new LiftWithSticks());
 		
 		btnCan3 = new JoystickButton(manipulatorStick, 5);
 		btnCan3.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_3));
+		btnCan3.whenReleased(new LiftWithSticks());
 		
 		btnCan4 = new JoystickButton(manipulatorStick, 6);
 		btnCan4.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_4));
+		btnCan4.whenReleased(new LiftWithSticks());
 		
 		btnCan5 = new JoystickButton(manipulatorStick, 8);
 		btnCan5.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_5));
+		btnCan5.whenReleased(new LiftWithSticks());
 		
 		
 	//DASHBOARD COMMANDS
@@ -97,11 +109,20 @@ public class OI {
 	
 	//DRIVER STICK
 	public double getDriverLeftStick() {
-		return driverStick.getY();
+		double stick = driverStick.getY();
+		if(Math.abs(stick) < STICK_DEADZONE){
+			return 0;
+		}
+		else 
+			return stick;
 	}
 	
 	public double getDriverRightStick(){
-		return driverStick.getThrottle();
+		double stick = driverStick.getThrottle();
+		if(Math.abs(stick) < STICK_DEADZONE){
+			return 0;
+		}
+		return stick;
 	}
 	
 	

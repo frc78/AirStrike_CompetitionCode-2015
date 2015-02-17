@@ -30,5 +30,9 @@ public class Claw extends Subsystem {
     public void setSpeed(double speed){
     	claw.set(speed);
     }
+    
+    public double getPot(){
+    	return clawPot.getVoltage();
+    }
 }
 

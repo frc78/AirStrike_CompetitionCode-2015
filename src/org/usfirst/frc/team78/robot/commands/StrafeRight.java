@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StrafeRight extends Command {
 
-	double m_heading;
+
 	
     public StrafeRight() {
         // Use requires() here to declare subsystem dependencies
@@ -18,23 +18,23 @@ public class StrafeRight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	m_heading = Robot.chassis.getGyro();
-    	Robot.chassis.setStrafeSpeed(.42);
+    	Robot.chassis.targetHeading = Robot.chassis.getGyro();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.straightStrafeCorrection(m_heading);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.stopAllDrive();
+    
     }
 
     // Called when another command which requires one or more of the same

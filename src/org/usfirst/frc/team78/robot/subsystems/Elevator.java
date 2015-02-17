@@ -26,13 +26,14 @@ public class Elevator extends Subsystem {
 	//VARIABLES
 	double liftP = 0.0012;//TODO tune
 	double liftError;
-	int LIFT_ERROR_THRESHOLD = 10;//TODO tune
+	int LIFT_ERROR_THRESHOLD = 15;//TODO tune
 	public int liftErrorNeutralizedCount;
 	
-	static final int UPPER_LIMIT = 4800;
+	static final int UPPER_LIMIT = 4825;
 	//static final int LOWER_LIMIT = -1;
 	
 
+	
 	final public int FLOOR_PICKUP = 50;//TODO these are all made up values
 	final public int ABOVE_TOTE = 1425;
 	final public int SCORING_PLATFORM = 405;
@@ -102,16 +103,18 @@ public class Elevator extends Subsystem {
     	double stick = Robot.oi.getManipulatorLeftStickY();
     	double speed;
     	
-    	if(!Robot.oi.manipulatorStick.getRawButton(7)){//normal soft limits
+    	if(!Robot.oi.manipulatorStick.getRawButton(7)){//normal soft upper limit
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0)
 	    		speed = 0;
-	    	else
-	    	speed = stick*0.6;
-	    	
-	    	
+	    	else if(getLiftEnc() < 600 && stick < 0){
+	    		speed = stick*.4;  //slow near bottom limit
+	    	}
+	    	else{
+	    	speed = stick*0.75;
+	    	}
     	}
     	else{//soft limit override mode
-	    	speed = stick*0.6;
+	    	speed = stick*0.75;
     	}
 
     	setLiftSpeed(speed);
