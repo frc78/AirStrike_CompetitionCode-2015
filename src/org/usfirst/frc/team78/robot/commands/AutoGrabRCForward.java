@@ -1,15 +1,13 @@
 package org.usfirst.frc.team78.robot.commands;
 
-import org.usfirst.frc.team78.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class GrabRCForward extends CommandGroup {
+public class AutoGrabRCForward extends CommandGroup {
     
-    public  GrabRCForward() {
+    public  AutoGrabRCForward() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

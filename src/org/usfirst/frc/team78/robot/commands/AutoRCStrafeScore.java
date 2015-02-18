@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RCScore extends CommandGroup {
+public class AutoRCStrafeScore extends CommandGroup {
     
-    public  RCScore() {
+    public  AutoRCStrafeScore() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,8 +31,6 @@ public class RCScore extends CommandGroup {
     	addSequential(new LiftMoveToHeight(Robot.elevator.FLOOR_PICKUP));
     	addSequential(new AutoStrafeTime(5, 0.5));
     	addSequential(new LiftMoveToHeight(10));
-
-    	
     	
     }
 }

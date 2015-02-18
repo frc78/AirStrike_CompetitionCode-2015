@@ -18,7 +18,7 @@ public class Claw extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-    	//TODO default command
+    	
     }
     
     

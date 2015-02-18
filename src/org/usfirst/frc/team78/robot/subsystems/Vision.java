@@ -1,6 +1,5 @@
 package org.usfirst.frc.team78.robot.subsystems;
 
-import org.usfirst.frc.team78.robot.Robot;
 import org.usfirst.frc.team78.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CameraServer;

@@ -176,7 +176,7 @@ public class Chassis extends Subsystem {
     }
     
     public double getLeftEnc(){
-    	return -leftEnc.getRaw();//TODO negate??
+    	return -leftEnc.getRaw();
     }
     
     public double getRightEnc(){

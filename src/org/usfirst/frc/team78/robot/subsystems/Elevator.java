@@ -34,14 +34,14 @@ public class Elevator extends Subsystem {
 	
 	public boolean isLiftZeroed = false;
 	
-	final public int FLOOR_PICKUP = 50;//TODO these are all made up values
+	final public int FLOOR_PICKUP = 50;
 	final public int SLED_PICKUP = 1415;
 	final public int ABOVE_SLED = 3225;
 	final public int ABOVE_TOTE = 1425;
 	final public int SCORING_PLATFORM = 405;
 	final public int STEP0 = 600;
 	final public int STEP1 = 1775;
-	final public int CAN_3 = 2004;
+	final public int CAN_3 = 2004;//TODO these are made up values
 	final public int CAN_4 = 2005;
 	final public int CAN_5 = 2006;
 	

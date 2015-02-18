@@ -8,7 +8,6 @@ import org.usfirst.frc.team78.robot.commands.LiftMoveToHeight;
 import org.usfirst.frc.team78.robot.commands.LiftWithSticks;
 import org.usfirst.frc.team78.robot.commands.OpenClaw;
 import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
-import org.usfirst.frc.team78.robot.commands.StopAllDrive;
 import org.usfirst.frc.team78.robot.commands.StrafeLeft;
 import org.usfirst.frc.team78.robot.commands.StrafeRight;
 import org.usfirst.frc.team78.robot.commands.Turn;
