@@ -39,6 +39,11 @@ public class Chassis extends Subsystem {
 	final double STRAIGHT_STRAFE_ERROR_CONST = (.033);
 	public double targetHeading = 0;
 	
+	
+	
+	double turnP = (.0045);
+	final double TURN_ERROR_THRESHOLD = 2.5;
+	
 
     public void initDefaultCommand() {
     	setDefaultCommand(new DriveWithJoysticks());
@@ -54,21 +59,21 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.7, right*.7);
+       	setSpeed(left*.6, right*.6);
        	}
        	
        	
        	
        	if(Robot.oi.driverStick.getRawButton(5) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){//left strafe
        		setStrafeSpeed(-.42);
-       		//straightStrafeCorrection(targetHeading);
+       		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(5)){
        		setStrafeSpeed(-.42);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){
        		setStrafeSpeed(.42);
-       		//straightStrafeCorrection(targetHeading);
+       		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6)){
        		setStrafeSpeed(.42);
@@ -83,22 +88,9 @@ public class Chassis extends Subsystem {
 
     
     public void setSpeed(double left, double right){
-    	/*if(left > 0 && right > 0){
-    		leftDrive1.set(-left*0.955);
-    		leftDrive2.set(-left*0.955);
-    		rightDrive1.set(right);
-    		rightDrive1.set(right);
-    	}
-    	else if(left < 0 && right < 0){
-    		leftDrive1.set(-left);
-    		leftDrive2.set(-left);
-    		rightDrive1.set(right*0.955);
-    		rightDrive1.set(right*0.955);
-    	}
-    	else{*/
+
     		leftDrive1.set(-left);
     		rightDrive1.set(right);
-    	//}
     }//end set speed
     
     public void setStrafeSpeed(double speed){
@@ -119,7 +111,7 @@ public class Chassis extends Subsystem {
 //_____________________________________________________________________________________________________________
 //AUTO METHODS
     public void driveStraightDistance(double distance){
-    	distanceError = distance - ((getLeftEnc()+getRightEnc())/2);//TODO why negated?
+    	distanceError = -(distance - ((getLeftEnc()+getRightEnc())/2));//TODO why negated?
     	double speed = distanceP*(distanceError);
 
     	if (speed < .25 && speed > 0){
@@ -136,6 +128,45 @@ public class Chassis extends Subsystem {
     	double driftError = getGyro();
     	setSpeed(speed+((STRAIGHT_ERROR_CONST)*driftError), speed-((STRAIGHT_ERROR_CONST)*driftError));
     }//end drive straight distance
+    
+ public void controlTurnSpeed(double target){
+    	double speed;
+    	double error = target- getGyro();
+    	speed = (-1)*turnP*(error);
+    	//IComponent += (-1)*I*(error);
+    	//speed += IComponent;
+    	//DComponent = (-1)*(D*((error-lastError)));
+    	//speed += DComponent;
+    	
+    	if (speed > .7){
+    		speed = .7;
+    	}
+    	if(speed < -.7){ 
+    		speed = -.7;
+    	}
+    	
+    	if (speed < .30 && speed > 0){
+    		speed = .30;
+    	}
+    	if(speed > -.30 && speed < 0){ 
+    		speed = -.30;
+    	}
+    	
+    	setTurnSpeed(-speed);
+    	//lastError = error;
+    	
+    	if(Math.abs(error) < TURN_ERROR_THRESHOLD){
+    		errorNeutralizedCount ++;
+    	}
+    	else{
+    		errorNeutralizedCount = 0;
+    	}
+    	
+    }//end control turn speed
+    
+    public void setTurnSpeed(double speed){
+    	setSpeed(-speed, speed);
+    }
     
 //_____________________________________________________________________________________________________________
 //SENSOR METHODS

@@ -2,6 +2,8 @@
 package org.usfirst.frc.team78.robot;
 
 import org.usfirst.frc.team78.robot.commands.AutoDoNothing;
+import org.usfirst.frc.team78.robot.commands.GrabRCForward;
+import org.usfirst.frc.team78.robot.commands.RCScore;
 import org.usfirst.frc.team78.robot.subsystems.Chassis;
 import org.usfirst.frc.team78.robot.subsystems.Claw;
 import org.usfirst.frc.team78.robot.subsystems.Elevator;
@@ -46,6 +48,8 @@ public class Robot extends IterativeRobot {
 		
 		//AUTO MODES
 		autoChooser.addDefault("Do Nothing", new AutoDoNothing());
+		autoChooser.addObject("Grab RC Forward", new GrabRCForward());
+		autoChooser.addObject("Grab RC Strafe", new RCScore());
 		
 		SmartDashboard.putData("Auto Mode:", autoChooser);
 		
@@ -75,6 +79,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Robot.elevator.isLiftZeroed = false;
     }
 
     /**
@@ -97,6 +102,8 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("Left Stick", Robot.oi.getDriverLeftStick());
     	SmartDashboard.putNumber("Pot", Robot.claw.getPot());
     	SmartDashboard.putBoolean("Is Lift Zeroed", Robot.elevator.isLiftZeroed);
+    	SmartDashboard.putNumber("Right Side", Robot.chassis.getRightEnc());
+    	SmartDashboard.putNumber("Left Side", Robot.chassis.getLeftEnc());
         Scheduler.getInstance().run();
     }
     

@@ -19,7 +19,7 @@ public class LiftMoveToHeight extends Command {
     	m_height = height;
     	m_error = height - Robot.elevator.getLiftEnc();
     	
-    	setTimeout(Math.abs(m_error/80)); //TODO not linear
+    	setTimeout(Math.abs(2.5)); //TODO not linear
     }
 
     protected void initialize() {
@@ -32,7 +32,7 @@ public class LiftMoveToHeight extends Command {
 
     protected boolean isFinished() {
         
-    	return (Robot.elevator.liftErrorNeutralizedCount > 20); //|| isTimedOut());//TODO NOT TESTED YET
+    	return (Robot.elevator.liftErrorNeutralizedCount > 20 || isTimedOut()); //|| isTimedOut());//TODO NOT TESTED YET
     }
 
     protected void end() {

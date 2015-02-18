@@ -1,5 +1,6 @@
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.AutoStrafeTime;
 import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.IndicateLinedUp;
@@ -10,6 +11,7 @@ import org.usfirst.frc.team78.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team78.robot.commands.StopAllDrive;
 import org.usfirst.frc.team78.robot.commands.StrafeLeft;
 import org.usfirst.frc.team78.robot.commands.StrafeRight;
+import org.usfirst.frc.team78.robot.commands.Turn;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -50,6 +52,9 @@ public class OI {
 		manipulatorStick = new Joystick(1);
 		
 	//DRIVER BUTTONS
+		btnIndicateLinedUp = new JoystickButton(driverStick, 2);
+		btnIndicateLinedUp.whileHeld(new IndicateLinedUp());
+		
 		btnStrafeLeft = new JoystickButton(driverStick, 5);
 		btnStrafeLeft.whenPressed(new StrafeLeft());
 		//btnStrafeLeft.whenReleased(new StopAllDrive());
@@ -58,8 +63,7 @@ public class OI {
 		btnStrafeRight.whenPressed(new StrafeRight());
 		//btnStrafeRight.whenReleased(new StopAllDrive());
 		
-		btnIndicateLinedUp = new JoystickButton(driverStick, 1);
-		btnIndicateLinedUp.whileHeld(new IndicateLinedUp());
+
 		
 
 	//MANIPULATOR BUTTONS
@@ -101,8 +105,10 @@ public class OI {
 		
 		
 	//DASHBOARD COMMANDS
-		SmartDashboard.putData(new DriveStraightDistance(8));
+		SmartDashboard.putData(new DriveStraightDistance(5));
 		SmartDashboard.putData(new ResetLiftEncoder());
+		SmartDashboard.putData(new Turn(-90));
+		SmartDashboard.putData(new AutoStrafeTime(2, 0.5));//negative = left
 	}
 	
 	

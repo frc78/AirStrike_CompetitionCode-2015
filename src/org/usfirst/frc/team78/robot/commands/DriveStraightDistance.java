@@ -13,8 +13,9 @@ public class DriveStraightDistance extends Command {
     public DriveStraightDistance(double feet) {
     	requires(Robot.chassis);
     	
-    	m_distance_clicks = (int)(685*feet);
-    	setTimeout(feet/2);
+    	m_distance_clicks = (int)(
+    			685*feet);
+    	setTimeout(feet/3);
     }
 
     protected void initialize() {
