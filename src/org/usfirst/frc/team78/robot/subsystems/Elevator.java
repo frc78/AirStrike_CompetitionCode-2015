@@ -107,8 +107,12 @@ public class Elevator extends Subsystem {
     	double speed;
     	
     	if(!Robot.oi.manipulatorStick.getRawButton(7)){//normal soft upper limit
-	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0)
+	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0){
 	    		speed = 0;
+	    	}
+	    	else if((getLiftEnc() > UPPER_LIMIT-50) && stick > 0){
+	    		speed = stick*.4;
+	    	}
 	    	else if(getLiftEnc() < 350 && stick < 0){
 	    		speed = stick*.35;  //slow near bottom limit
 	    	}
