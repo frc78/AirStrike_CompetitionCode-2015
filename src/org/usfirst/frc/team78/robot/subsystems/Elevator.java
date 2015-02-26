@@ -110,14 +110,14 @@ public class Elevator extends Subsystem {
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0)
 	    		speed = 0;
 	    	else if(getLiftEnc() < 350 && stick < 0){
-	    		speed = stick*.3;  //slow near bottom limit
+	    		speed = stick*.35;  //slow near bottom limit
 	    	}
 	    	else{
-	    	speed = stick*0.75;
+	    	speed = stick*0.85;
 	    	}
     	}
     	else{//soft limit override mode
-	    	speed = stick*0.75;
+	    	speed = stick*0.85;
     	}
 
     	setLiftSpeed(speed);
