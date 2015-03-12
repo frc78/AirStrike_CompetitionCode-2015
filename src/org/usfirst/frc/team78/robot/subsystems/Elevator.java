@@ -103,10 +103,20 @@ public class Elevator extends Subsystem {
     
     
     public void liftWithSticks(){
-    	double stick = Robot.oi.getManipulatorLeftStickY();
+    	double stick;//=Robot.oi.getManipulatorLeftStickY();
     	double speed;
     	
-    	if(!Robot.oi.manipulatorStick.getRawButton(7)){//normal soft upper limit
+    	if(Robot.oi.manipulatorStick.getRawButton(RobotMap.upLiftStick)){//up
+    		stick = 1;
+    	}
+    	else if(Robot.oi.manipulatorStick.getRawButton(RobotMap.downLiftStick)){
+    		stick = -1;
+    	}
+    	else{
+    		stick = 0;
+    	}
+    	
+    	if(!Robot.oi.manipulatorStick.getRawButton(RobotMap.overrideSwitch)){//normal soft upper limit
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0){
 	    		speed = 0;
 	    	}
@@ -124,6 +134,9 @@ public class Elevator extends Subsystem {
 	    	speed = stick*0.85;
     	}
 
+    	if(Robot.oi.manipulatorStick.getRawButton(RobotMap.slowLiftBtn)){
+    		speed*=.65;
+    	}
     	setLiftSpeed(speed);
     	
     	if(getLiftEnc() > 3100){

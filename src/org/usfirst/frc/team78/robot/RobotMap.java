@@ -41,6 +41,18 @@ public class RobotMap {
 	public final static int INDICATOR_LIGHT = 0;
 	
 	
+	//MANIPULATOR BUTTONS
+	final static public int floorBtn = 16;
+	final static public int scoringPlatformBtn = 8;
+	final static public int stepBtn = 11;
+	final static public int onToteBtn = 2;
+	final static public int aboveToteBtn = 10;
+	final static public int slowLiftBtn = 17;
+	final static public int openClawBtn = 9;
+	final static public int closeClawBtn = 5;
+	final static public int upLiftStick = 14;
+	final static public int downLiftStick = 15;
+	final static public int overrideSwitch = 3;
 	
 	
 }

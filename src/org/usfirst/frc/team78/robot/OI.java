@@ -58,6 +58,7 @@ public class OI {
 		btnStrafeLeft.whenPressed(new StrafeLeft());
 		//btnStrafeLeft.whenReleased(new StopAllDrive());
 		
+		
 		btnStrafeRight = new JoystickButton(driverStick, 6);
 		btnStrafeRight.whenPressed(new StrafeRight());
 		//btnStrafeRight.whenReleased(new StopAllDrive());
@@ -66,31 +67,31 @@ public class OI {
 		
 
 	//MANIPULATOR BUTTONS
-		btnOpenClaw = new JoystickButton(manipulatorStick, 9);
+		btnOpenClaw = new JoystickButton(manipulatorStick, RobotMap.openClawBtn);
 		btnOpenClaw.whenPressed(new OpenClaw());
 		btnOpenClaw.whenReleased(new LiftWithSticks());
 		
-		btnCloseClaw = new JoystickButton(manipulatorStick, 10);
+		btnCloseClaw = new JoystickButton(manipulatorStick, RobotMap.closeClawBtn);
 		btnCloseClaw.whenPressed(new CloseClaw());
 		btnCloseClaw.whenReleased(new LiftWithSticks());
 		
-		btnFloorPickup = new JoystickButton(manipulatorStick, 2);
+		btnFloorPickup = new JoystickButton(manipulatorStick, RobotMap.floorBtn);
 		btnFloorPickup.whenPressed(new LiftMoveToHeight(Robot.elevator.FLOOR_PICKUP));
 		btnFloorPickup.whenReleased(new LiftWithSticks());
 		
-		btnAboveTote = new JoystickButton(manipulatorStick, 1);
+		btnAboveTote = new JoystickButton(manipulatorStick, RobotMap.aboveToteBtn);
 		btnAboveTote.whenPressed(new LiftMoveToHeight(Robot.elevator.ABOVE_TOTE));
 		btnAboveTote.whenReleased(new LiftWithSticks());
 		
-		btnScoringPlatform = new JoystickButton(manipulatorStick, 3);
+		btnScoringPlatform = new JoystickButton(manipulatorStick, RobotMap.onToteBtn);
 		btnScoringPlatform.whenPressed(new LiftMoveToHeight(Robot.elevator.SLED_PICKUP));
 		btnScoringPlatform.whenReleased(new LiftWithSticks());
 		
-		btnStep = new JoystickButton(manipulatorStick, 4);
+		btnStep = new JoystickButton(manipulatorStick, RobotMap.aboveToteBtn);
 		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.ABOVE_SLED));
 		btnStep.whenReleased(new LiftWithSticks());
 		
-		btnCan3 = new JoystickButton(manipulatorStick, 5);
+		/*btnCan3 = new JoystickButton(manipulatorStick, 5);
 		btnCan3.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_3));
 		btnCan3.whenReleased(new LiftWithSticks());
 		
@@ -100,7 +101,7 @@ public class OI {
 		
 		btnCan5 = new JoystickButton(manipulatorStick, 8);
 		btnCan5.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_5));
-		btnCan5.whenReleased(new LiftWithSticks());
+		btnCan5.whenReleased(new LiftWithSticks());*/
 		
 		
 	//DASHBOARD COMMANDS

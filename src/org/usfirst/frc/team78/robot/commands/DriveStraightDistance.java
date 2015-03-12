@@ -15,7 +15,7 @@ public class DriveStraightDistance extends Command {
     	
     	m_distance_clicks = (int)(
     			685*feet);
-    	setTimeout(feet/3);
+    	setTimeout(Math.abs(feet/2.5));
     }
 
     protected void initialize() {

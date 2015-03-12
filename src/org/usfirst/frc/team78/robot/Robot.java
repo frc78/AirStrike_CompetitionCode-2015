@@ -3,6 +3,7 @@ package org.usfirst.frc.team78.robot;
 
 import org.usfirst.frc.team78.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team78.robot.commands.AutoGrabRCForward;
+import org.usfirst.frc.team78.robot.commands.AutoRCBackwards;
 import org.usfirst.frc.team78.robot.commands.AutoRCStrafeScore;
 import org.usfirst.frc.team78.robot.subsystems.Chassis;
 import org.usfirst.frc.team78.robot.subsystems.Claw;
@@ -49,7 +50,8 @@ public class Robot extends IterativeRobot {
 		//AUTO MODES
 		autoChooser.addDefault("Do Nothing", new AutoDoNothing());
 		autoChooser.addObject("Grab RC Forward", new AutoGrabRCForward());
-		autoChooser.addObject("Grab RC Strafe", new AutoRCStrafeScore());
+		autoChooser.addObject("Grab RC Backwards", new AutoRCBackwards());
+		//autoChooser.addObject("Grab RC Strafe", new AutoRCStrafeScore());
 		
 		SmartDashboard.putData("Auto Mode:", autoChooser);
 		
