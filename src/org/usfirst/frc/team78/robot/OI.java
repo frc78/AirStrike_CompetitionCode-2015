@@ -25,6 +25,7 @@ public class OI {
 
 	public Joystick driverStick;
 	public Joystick manipulatorStick;
+	public Joystick manipulatorBackupStick;
 	
 	final static double STICK_DEADZONE = 0.05;
 	
@@ -41,14 +42,17 @@ public class OI {
 	public Button btnAboveTote;
 	public Button btnScoringPlatform;
 	public Button btnStep;
-	public Button btnCan3;
-	public Button btnCan4;
-	public Button btnCan5;
+
+	
+	//MANIPULATOR BACKUP BUTTONS
+	public Button btnOpenClawBackup;
+	public Button btnCloseClawBackup;
 
 	
 	public OI(){
 		driverStick = new Joystick(0);
 		manipulatorStick = new Joystick(1);
+		manipulatorBackupStick = new Joystick(2);
 		
 	//DRIVER BUTTONS
 		btnIndicateLinedUp = new JoystickButton(driverStick, 2);
@@ -63,7 +67,6 @@ public class OI {
 		btnStrafeRight.whenPressed(new StrafeRight());
 		//btnStrafeRight.whenReleased(new StopAllDrive());
 		
-
 		
 
 	//MANIPULATOR BUTTONS
@@ -91,17 +94,15 @@ public class OI {
 		btnStep.whenPressed(new LiftMoveToHeight(Robot.elevator.ABOVE_SLED));
 		btnStep.whenReleased(new LiftWithSticks());
 		
-		/*btnCan3 = new JoystickButton(manipulatorStick, 5);
-		btnCan3.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_3));
-		btnCan3.whenReleased(new LiftWithSticks());
+	
+		//BACKUP BUTTONS
+		btnOpenClawBackup = new JoystickButton(manipulatorBackupStick, RobotMap.openClawBackupBtn);
+		btnOpenClawBackup.whenPressed(new OpenClaw());
+		btnOpenClawBackup.whenReleased(new LiftWithSticks());
 		
-		btnCan4 = new JoystickButton(manipulatorStick, 6);
-		btnCan4.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_4));
-		btnCan4.whenReleased(new LiftWithSticks());
-		
-		btnCan5 = new JoystickButton(manipulatorStick, 8);
-		btnCan5.whenPressed(new LiftMoveToHeight(Robot.elevator.CAN_5));
-		btnCan5.whenReleased(new LiftWithSticks());*/
+		btnCloseClawBackup = new JoystickButton(manipulatorBackupStick, RobotMap.closeClawBackupBtn);
+		btnCloseClawBackup.whenPressed(new CloseClaw());
+		btnCloseClawBackup.whenReleased(new LiftWithSticks());
 		
 		
 	//DASHBOARD COMMANDS
@@ -141,6 +142,15 @@ public class OI {
 	}
 	public double getManipulatorRightStickX(){
 		return manipulatorStick.getTwist();
+	}
+	
+	//MANIPULATOR BACKUP STICK
+	public double getManipulatorBackupStick(){
+		double stick = manipulatorBackupStick.getY();
+		if(Math.abs(stick) < STICK_DEADZONE){
+			return 0;
+		}
+		return -stick;
 	}
 
 }//end class

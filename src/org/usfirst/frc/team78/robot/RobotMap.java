@@ -54,5 +54,10 @@ public class RobotMap {
 	final static public int downLiftStick = 15;
 	final static public int overrideSwitch = 3;
 	
+	//MANIPULATOR  BACKUP BUTTONS
+	final static public int overrideBackupBtn = 5;
+	final static public int openClawBackupBtn = 9;
+	final static public int closeClawBackupBtn = 10;
+	
 	
 }

@@ -36,7 +36,7 @@ public class Chassis extends Subsystem {
 	final double DISTANCE_ERROR_THRESHOLD = 175; //in clicks
 	public int errorNeutralizedCount = 0;
 	final double STRAIGHT_ERROR_CONST = (0.006);
-	final double STRAIGHT_STRAFE_ERROR_CONST = (.033);
+	final double STRAIGHT_STRAFE_ERROR_CONST = (.029);
 	public double targetHeading = 0;
 	
 	
@@ -66,17 +66,19 @@ public class Chassis extends Subsystem {
        	
        	if(Robot.oi.driverStick.getRawButton(5) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){//left strafe
        		setStrafeSpeed(-.5);
-       		//straightStrafeCorrection(targetHeading);
+       		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(5)){
        		setStrafeSpeed(-.5);
+       		targetHeading = getGyro();
        	}
        	else if(Robot.oi.driverStick.getRawButton(6) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){
        		setStrafeSpeed(.5);
-       		//straightStrafeCorrection(targetHeading);
+       		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6)){
        		setStrafeSpeed(.5);
+       		targetHeading = getGyro();
        	}
        	else{
        		setStrafeSpeed(0);
