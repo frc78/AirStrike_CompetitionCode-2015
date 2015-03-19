@@ -38,7 +38,8 @@ public class Chassis extends Subsystem {
 	final double STRAIGHT_ERROR_CONST = (0.006);
 	final double STRAIGHT_STRAFE_ERROR_CONST = (.029);
 	public double targetHeading = 0;
-	
+	double strafeRampCount= 0.25;
+	double strafeRampAddition = .017;
 	
 	
 	double turnP = (.0045);
@@ -59,29 +60,36 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.55, right*.55);
+       	setSpeed(left*.5, right*.5);
        	}
        	
-       	
+       	if(strafeRampCount > 0.7){
+       		strafeRampCount = 0.7 - strafeRampAddition;
+       	}
        	
        	if(Robot.oi.driverStick.getRawButton(5) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){//left strafe
-       		setStrafeSpeed(-.5);
+       		strafeRampCount += strafeRampAddition;
+       		setStrafeSpeed(-strafeRampCount);
        		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(5)){
-       		setStrafeSpeed(-.5);
+       		strafeRampCount += strafeRampAddition;
+       		setStrafeSpeed(-strafeRampCount);
        		targetHeading = getGyro();
        	}
        	else if(Robot.oi.driverStick.getRawButton(6) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){
-       		setStrafeSpeed(.5);
+       		strafeRampCount += strafeRampAddition;
+       		setStrafeSpeed(strafeRampCount);
        		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6)){
-       		setStrafeSpeed(.5);
+       		strafeRampCount += strafeRampAddition;
+       		setStrafeSpeed(strafeRampCount);
        		targetHeading = getGyro();
        	}
        	else{
        		setStrafeSpeed(0);
+       		strafeRampCount = .25;
        	}
 
        	
