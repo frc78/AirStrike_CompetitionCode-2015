@@ -12,7 +12,7 @@ public class OpenClaw extends Command {
     public OpenClaw() {
 
     	requires(Robot.claw);
-    	setTimeout(0.14);
+    	setTimeout(0.156);
     }
 
     protected void initialize() {

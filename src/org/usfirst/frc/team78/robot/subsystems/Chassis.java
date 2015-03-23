@@ -36,7 +36,7 @@ public class Chassis extends Subsystem {
 	final double DISTANCE_ERROR_THRESHOLD = 175; //in clicks
 	public int errorNeutralizedCount = 0;
 	final double STRAIGHT_ERROR_CONST = (0.006);
-	final double STRAIGHT_STRAFE_ERROR_CONST = (.029);
+	final double STRAIGHT_STRAFE_ERROR_CONST = (.032);
 	public double targetHeading = 0;
 	double strafeRampCount= 0.25;
 	double strafeRampAddition = .017;
@@ -60,7 +60,7 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.5, right*.5);
+       	setSpeed(left*.45, right*.45);
        	}
        	
        	if(strafeRampCount > 0.7){
