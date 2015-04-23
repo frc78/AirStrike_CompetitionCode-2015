@@ -1,10 +1,14 @@
 
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.AutoBurgle;
 import org.usfirst.frc.team78.robot.commands.AutoDoNothing;
+import org.usfirst.frc.team78.robot.commands.AutoDriveBackward;
+import org.usfirst.frc.team78.robot.commands.AutoDriveForward;
 import org.usfirst.frc.team78.robot.commands.AutoGrabRCForward;
 import org.usfirst.frc.team78.robot.commands.AutoRCBackwards;
 import org.usfirst.frc.team78.robot.commands.AutoRCStrafeScore;
+import org.usfirst.frc.team78.robot.subsystems.Burglar;
 import org.usfirst.frc.team78.robot.subsystems.Chassis;
 import org.usfirst.frc.team78.robot.subsystems.Claw;
 import org.usfirst.frc.team78.robot.subsystems.Elevator;
@@ -30,6 +34,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator = new Elevator();
 	public static Claw claw = new Claw();
 	public static Vision vision = new Vision();
+	public static Burglar burglar = new Burglar();
 	
 	public static OI oi;
 	
@@ -49,8 +54,12 @@ public class Robot extends IterativeRobot {
 		
 		//AUTO MODES
 		autoChooser.addDefault("Do Nothing", new AutoDoNothing());
-		autoChooser.addObject("Grab RC Forward", new AutoGrabRCForward());
-		autoChooser.addObject("Grab RC Backwards", new AutoRCBackwards());
+		autoChooser.addObject("Burgle", new AutoBurgle());
+		autoChooser.addObject("Drive Forward", new AutoDriveForward());
+		autoChooser.addObject("Drive Backward", new AutoDriveBackward());
+		//autoChooser.addObject("Grab RC Forward", new AutoGrabRCForward());
+		//autoChooser.addObject("Grab RC Backwards", new AutoRCBackwards());
+		
 		//autoChooser.addObject("Grab RC Strafe", new AutoRCStrafeScore());
 		
 		SmartDashboard.putData("Auto Mode:", autoChooser);
@@ -66,6 +75,8 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
     	 autonomousCommand = (Command) autoChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
+        
+        burglar.initPump();
     }
 
     /**
@@ -82,6 +93,9 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         Robot.elevator.isLiftZeroed = false;
+        
+        burglar.initPump();
+    
     }
 
     /**

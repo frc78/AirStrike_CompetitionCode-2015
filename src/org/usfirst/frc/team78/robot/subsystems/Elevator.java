@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
 	int LIFT_ERROR_THRESHOLD = 15;//TODO tune
 	public int liftErrorNeutralizedCount;
 	
-	static final int UPPER_LIMIT = 4825;
+	static final int UPPER_LIMIT = 4700;
 	//static final int LOWER_LIMIT = -1;
 	
 	public boolean isLiftZeroed = false;
@@ -123,18 +123,18 @@ public class Elevator extends Subsystem {
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0){
 	    		speed = 0;
 	    	}
-	    	else if((getLiftEnc() > UPPER_LIMIT-150) && stick > 0){
-	    		speed = stick*.45;
+	    	else if((getLiftEnc() > UPPER_LIMIT-250) && stick > 0){
+	    		speed = stick*.4;
 	    	}
 	    	else if(getLiftEnc() < 300 && stick < 0){
 	    		speed = stick*.45;  //slow near bottom limit
 	    	}
 	    	else{
-	    	speed = stick*0.85;
+	    	speed = stick*0.8;
 	    	}
     	}
     	else{//soft limit override mode
-	    	speed = stick*0.85;
+	    	speed = stick*0.8;
     	}
 
     	if(Robot.oi.manipulatorStick.getRawButton(RobotMap.slowLiftBtn)){

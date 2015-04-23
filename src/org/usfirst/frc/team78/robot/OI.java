@@ -1,6 +1,8 @@
 package org.usfirst.frc.team78.robot;
 
-import org.usfirst.frc.team78.robot.commands.AutoStrafeTime;
+import org.usfirst.frc.team78.robot.commands.DeployBurglar;
+import org.usfirst.frc.team78.robot.commands.RetractBurglar;
+import org.usfirst.frc.team78.robot.commands.StrafeTime;
 import org.usfirst.frc.team78.robot.commands.CloseClaw;
 import org.usfirst.frc.team78.robot.commands.DriveStraightDistance;
 import org.usfirst.frc.team78.robot.commands.IndicateLinedUp;
@@ -106,10 +108,10 @@ public class OI {
 		
 		
 	//DASHBOARD COMMANDS
-		SmartDashboard.putData(new DriveStraightDistance(5));
 		SmartDashboard.putData(new ResetLiftEncoder());
-		SmartDashboard.putData(new Turn(-90));
-		SmartDashboard.putData(new AutoStrafeTime(2, 0.5));//negative = left
+		SmartDashboard.putData(new DeployBurglar());
+		SmartDashboard.putData(new RetractBurglar());
+
 	}
 	
 	

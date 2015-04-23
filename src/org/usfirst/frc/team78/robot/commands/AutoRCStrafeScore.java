@@ -29,7 +29,7 @@ public class AutoRCStrafeScore extends CommandGroup {
     	addSequential(new CloseClaw());
     	//addSequential(new CloseClaw());
     	addSequential(new LiftMoveToHeight(Robot.elevator.FLOOR_PICKUP));
-    	addSequential(new AutoStrafeTime(5, 0.5));
+    	addSequential(new StrafeTime(5, 0.5));
     	addSequential(new LiftMoveToHeight(10));
     	
     }
