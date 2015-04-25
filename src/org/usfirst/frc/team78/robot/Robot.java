@@ -6,6 +6,7 @@ import org.usfirst.frc.team78.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team78.robot.commands.AutoDriveBackward;
 import org.usfirst.frc.team78.robot.commands.AutoDriveForward;
 import org.usfirst.frc.team78.robot.commands.AutoGrabRCForward;
+import org.usfirst.frc.team78.robot.commands.AutoKnockCan;
 import org.usfirst.frc.team78.robot.commands.AutoRCBackwards;
 import org.usfirst.frc.team78.robot.commands.AutoRCStrafeScore;
 import org.usfirst.frc.team78.robot.subsystems.Burglar;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Burgle", new AutoBurgle());
 		autoChooser.addObject("Drive Forward", new AutoDriveForward());
 		autoChooser.addObject("Drive Backward", new AutoDriveBackward());
+		autoChooser.addObject("Knock Can", new AutoKnockCan());
 		//autoChooser.addObject("Grab RC Forward", new AutoGrabRCForward());
 		//autoChooser.addObject("Grab RC Backwards", new AutoRCBackwards());
 		

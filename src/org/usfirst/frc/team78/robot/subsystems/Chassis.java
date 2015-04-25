@@ -32,14 +32,14 @@ public class Chassis extends Subsystem {
 	
 		//DISTANCE CALCULATION
 	double distanceError;
-	final double distanceP = 0.0003;
+	final double distanceP = 0.00035;
 	final double DISTANCE_ERROR_THRESHOLD = 175; //in clicks
 	public int errorNeutralizedCount = 0;
 	final double STRAIGHT_ERROR_CONST = (0.006);
 	final double STRAIGHT_STRAFE_ERROR_CONST = (.032);
 	public double targetHeading = 0;
 	double strafeRampCount= 0.25;
-	double strafeRampAddition = .017;
+	double strafeRampAddition = .011;
 	
 	
 	double turnP = (.0045);
@@ -60,7 +60,7 @@ public class Chassis extends Subsystem {
        		setSpeed(left, right);
        	}
        	else{
-       	setSpeed(left*.45, right*.45);
+       	setSpeed(left*.5, right*.5);
        	}
        	
        	if(strafeRampCount > 0.7){
@@ -70,21 +70,25 @@ public class Chassis extends Subsystem {
        	if(Robot.oi.driverStick.getRawButton(5) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){//left strafe
        		strafeRampCount += strafeRampAddition;
        		setStrafeSpeed(-strafeRampCount);
+       		//setStrafeSpeed(-0.33);//back to old, no ramping
        		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(5)){
        		strafeRampCount += strafeRampAddition;
        		setStrafeSpeed(-strafeRampCount);
+       		//setStrafeSpeed(-0.33);//back to old, no ramping
        		targetHeading = getGyro();
        	}
        	else if(Robot.oi.driverStick.getRawButton(6) && (Robot.oi.getDriverRightStick() == 0 && Robot.oi.getDriverLeftStick() == 0)){
        		strafeRampCount += strafeRampAddition;
        		setStrafeSpeed(strafeRampCount);
+       		//setStrafeSpeed(0.33);//back to old, no ramping
        		straightStrafeCorrection(targetHeading);
        	}
        	else if(Robot.oi.driverStick.getRawButton(6)){
        		strafeRampCount += strafeRampAddition;
        		setStrafeSpeed(strafeRampCount);
+       		//setStrafeSpeed(0.33);//back to old, no ramping
        		targetHeading = getGyro();
        	}
        	else{
@@ -127,10 +131,10 @@ public class Chassis extends Subsystem {
     	if (speed < .25 && speed > 0){
     		speed = .25;
     	}
-    	if(speed > .5)
-    		speed = .5;
-    	if(speed <-.5)
-    		speed = -.5;
+    	if(speed > .7)
+    		speed = .7;
+    	if(speed <-.7)
+    		speed = -.7;
     	
     	if(Math.abs(distanceError) < DISTANCE_ERROR_THRESHOLD){
     		errorNeutralizedCount ++;

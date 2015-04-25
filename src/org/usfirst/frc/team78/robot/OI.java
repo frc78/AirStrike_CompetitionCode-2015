@@ -49,6 +49,8 @@ public class OI {
 	//MANIPULATOR BACKUP BUTTONS
 	public Button btnOpenClawBackup;
 	public Button btnCloseClawBackup;
+	public Button btnKnockCanPreset;
+	public Button btnTopPreset;
 
 	
 	public OI(){
@@ -98,13 +100,22 @@ public class OI {
 		
 	
 		//BACKUP BUTTONS
-		btnOpenClawBackup = new JoystickButton(manipulatorBackupStick, RobotMap.openClawBackupBtn);
+		/*btnOpenClawBackup = new JoystickButton(manipulatorBackupStick, RobotMap.openClawBackupBtn);
 		btnOpenClawBackup.whenPressed(new OpenClaw());
 		btnOpenClawBackup.whenReleased(new LiftWithSticks());
 		
 		btnCloseClawBackup = new JoystickButton(manipulatorBackupStick, RobotMap.closeClawBackupBtn);
 		btnCloseClawBackup.whenPressed(new CloseClaw());
-		btnCloseClawBackup.whenReleased(new LiftWithSticks());
+		btnCloseClawBackup.whenReleased(new LiftWithSticks());*/
+		
+		btnKnockCanPreset = new JoystickButton(manipulatorBackupStick, RobotMap.knockCanPresetBtn);
+		btnKnockCanPreset.whenPressed(new LiftMoveToHeight(Robot.elevator.knockCanPreset));
+		btnKnockCanPreset.whenReleased(new LiftWithSticks());
+		
+		btnTopPreset = new JoystickButton(manipulatorBackupStick, RobotMap.topPresetBtn);
+		btnTopPreset.whenPressed(new LiftMoveToHeight(Robot.elevator.topPreset));
+		btnTopPreset.whenReleased(new LiftWithSticks());
+		
 		
 		
 	//DASHBOARD COMMANDS
@@ -133,7 +144,6 @@ public class OI {
 		}
 		return stick;
 	}
-	
 	
 	
 	

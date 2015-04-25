@@ -19,7 +19,7 @@ public class LiftMoveToHeight extends Command {
     	m_height = height;
     	m_error = height - Robot.elevator.getLiftEnc();
     	
-    	setTimeout(Math.abs(2.5)); //TODO not linear
+    	setTimeout(Math.abs(3)); //TODO not linear
     }
 
     protected void initialize() {

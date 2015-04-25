@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
 	int LIFT_ERROR_THRESHOLD = 15;//TODO tune
 	public int liftErrorNeutralizedCount;
 	
-	static final int UPPER_LIMIT = 4700;
+	static final int UPPER_LIMIT = 4750;
 	//static final int LOWER_LIMIT = -1;
 	
 	public boolean isLiftZeroed = false;
@@ -44,6 +44,9 @@ public class Elevator extends Subsystem {
 	final public int CAN_3 = 2004;//TODO these are made up values
 	final public int CAN_4 = 2005;
 	final public int CAN_5 = 2006;
+	
+	public final int knockCanPreset = 1792;
+	public final int topPreset = 4700;
 	
 
     public void initDefaultCommand() {
@@ -86,7 +89,7 @@ public class Elevator extends Subsystem {
     
     
     public void setLiftSpeed(double speed){	
-    	if(getZeroLimit() && speed < 0){
+    	if(getZeroLimit() && speed <= 0){
     		resetLiftEncoder();
     		isLiftZeroed = true;
     		speed = 0;
@@ -106,8 +109,8 @@ public class Elevator extends Subsystem {
     	double stick;//=Robot.oi.getManipulatorLeftStickY();
     	double speed;
     	
-    	if(Robot.oi.manipulatorStick.getRawButton(RobotMap.upLiftStick)){//up
-    		stick = 1;
+    	if(Robot.oi.manipulatorBackupStick.getRawButton(5)){//up//TODO change back to work with panel
+    		stick = .2;//change back to 1
     	}
     	else if(Robot.oi.manipulatorStick.getRawButton(RobotMap.downLiftStick)){
     		stick = -1;
@@ -123,8 +126,14 @@ public class Elevator extends Subsystem {
 	    	if((getLiftEnc() > UPPER_LIMIT) && stick > 0){
 	    		speed = 0;
 	    	}
-	    	else if((getLiftEnc() > UPPER_LIMIT-250) && stick > 0){
-	    		speed = stick*.4;
+	    	else if((getLiftEnc() > UPPER_LIMIT-1600) && stick > 0){
+	    		speed = (UPPER_LIMIT - getLiftEnc()) *0.0006;
+	    		if(speed > 0.75){
+	    			speed = 0.75;
+	    		}
+	    		if(speed < 0.25){
+	    			speed = 0.25;
+	    		}
 	    	}
 	    	else if(getLiftEnc() < 300 && stick < 0){
 	    		speed = stick*.45;  //slow near bottom limit

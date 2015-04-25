@@ -58,6 +58,9 @@ public class RobotMap {
 	final static public int overrideBackupBtn = 5;//lb on new sticks
 	final static public int openClawBackupBtn = 9;
 	final static public int closeClawBackupBtn = 10;
+	final static public int knockCanPresetBtn = 2;
+	final static public int topPresetBtn = 4;
+
 	
 	
 }
