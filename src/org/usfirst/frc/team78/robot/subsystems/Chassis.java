@@ -131,10 +131,10 @@ public class Chassis extends Subsystem {
     	if (speed < .25 && speed > 0){
     		speed = .25;
     	}
-    	if(speed > .7)
-    		speed = .7;
-    	if(speed <-.7)
-    		speed = -.7;
+    	if(speed > .85)
+    		speed = .85;
+    	if(speed <-.85)
+    		speed = -.85;
     	
     	if(Math.abs(distanceError) < DISTANCE_ERROR_THRESHOLD){
     		errorNeutralizedCount ++;
